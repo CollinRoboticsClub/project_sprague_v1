@@ -1,11 +1,10 @@
-import ischedule
+import ischedule, signal
 
 import RPi.GPIO as GPIO
 
 from subsystems.drivetrain import Drivetrain
 
-from constants import schedule_consts, pins
-# todo: ground l298n and pi together
+from constants import schedule_consts
 
 class Robot:
 	def __init__(self):
@@ -13,16 +12,21 @@ class Robot:
 
 	def run(self):
 		self.setup()
-		ischedule.schedule(self.periodic, schedule_consts.DT)
-		ischedule.run_loop()
+
+		signal.signal(signal.SIGINT, self.stop)
+
+		ischedule.schedule(self.periodic, schedule_consts.DT_SECONDS)
+
+		try:
+			ischedule.run_loop()
+		finally:
+			self.stop()
 
 	def setup(self):
-		GPIO.setmode(GPIO.BCM) # TODO: move
-
 		self.drivetrain.setup()
 	
 	def periodic(self):
-		try:
-			self.drivetrain.periodic()
-		except KeyboardInterrupt:
-			GPIO.cleanup()
+		self.drivetrain.periodic()
+
+	def stop(self):
+		GPIO.cleanup()

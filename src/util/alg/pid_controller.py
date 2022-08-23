@@ -16,7 +16,7 @@ class PIDController:
         self.iZone = iZone
         self.dt = dt
     
-    def calculate(self, setpoint: float, processVariable: float):
+    def calculate(self, setpoint: float, processVariable: float) -> float:
         error = setpoint - processVariable
 
         # integrate error
