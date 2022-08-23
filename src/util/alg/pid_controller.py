@@ -14,6 +14,7 @@ class PIDController:
         self.minOutput = minOutput
         self.maxOutput = maxOutput
         self.iZone = iZone
+        self.dt = dt
     
     def calculate(self, setpoint: float, processVariable: float):
         error = setpoint - processVariable
@@ -21,7 +22,7 @@ class PIDController:
         # integrate error
         self.iErr += error
         # apply iZone
-        iTerm = (self.kI * self.iErr) if (abs(error) < self.iZone) else 0
+        iTerm = (self.kI * self.iErr * self.dt) if (abs(error) < self.iZone) else 0
 
 
         # calculate dErr
@@ -32,7 +33,7 @@ class PIDController:
         # output
         output = (self.kP * error
                 + iTerm
-                + self.kD * dErr)
+                + self.kD * dErr / self.dt)
             
         # clamp between min and max
         output = clamp(output, self.minOutput, self.maxOutput)

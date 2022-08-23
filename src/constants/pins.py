@@ -1,10 +1,10 @@
-ena = 13
-in1 = 22
-in2 = 17
+ENA = 13
+IN1 = 22
+IN2 = 17
 
-enb = 12
-in3 = 24
-in4 = 23
+ENB = 12
+IN3 = 24
+IN4 = 23
 
-left_encoder = 14
-right_encoder = 18
+LEFT_ENCODER = 14
+RIGHT_ENCODER = 18

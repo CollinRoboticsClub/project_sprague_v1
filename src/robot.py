@@ -13,11 +13,11 @@ class Robot:
 
 	def run(self):
 		self.setup()
-		ischedule.schedule(self.periodic, schedule_consts.dt)
+		ischedule.schedule(self.periodic, schedule_consts.DT)
 		ischedule.run_loop()
 
 	def setup(self):
-		GPIO.setmode(GPIO.BCM)
+		GPIO.setmode(GPIO.BCM) # TODO: move
 
 		self.drivetrain.setup()
 	
