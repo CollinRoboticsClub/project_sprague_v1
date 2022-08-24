@@ -1,4 +1,3 @@
-from constants import schedule_consts
 from util.ezmath import clamp
 
 infinity = float("inf")
@@ -7,7 +6,7 @@ class PIDController:
     iErr = 0
     lastError = 0
 
-    def __init__(self, kP=1.0, kI=0.0, kD=0.0, minOutput = infinity, maxOutput=-infinity, iZone=0, dt=schedule_consts.dt):
+    def __init__(self, kP=1.0, kI=0.0, kD=0.0, minOutput = infinity, maxOutput=-infinity, iZone=0, dt=0.01):
         self.kP = kP
         self.kI = kI
         self.kD = kD
