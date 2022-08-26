@@ -1,5 +1,5 @@
-def clamp(value, min, max):
-    return max(min(value, max), min)
+def clamp(value, min_value, max_value):
+    return max(min(value, max_value), min_value)
 
 def map(value, inMin, inMax, outMin, outMax):
     """Scales values linearly, like Arduino map()"""

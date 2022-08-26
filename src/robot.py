@@ -15,7 +15,7 @@ class Robot:
 
 		signal.signal(signal.SIGINT, self.stop)
 
-		ischedule.schedule(self.periodic, schedule_consts.DT_SECONDS)
+		ischedule.schedule(self.periodic, interval=schedule_consts.DT_SECONDS)
 
 		try:
 			ischedule.run_loop()
