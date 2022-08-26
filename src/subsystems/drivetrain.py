@@ -4,19 +4,19 @@ from constants import pins
 
 class Drivetrain:
 	def __init__(self):
-		# self.gyro = Gyro()
+		self.gyro = Gyro()
 		self.left_motor = SmartMotor(pins.ENA, pins.IN1, pins.IN2, pins.LEFT_ENCODER)
-		self.right_motor = SmartMotor(pins.ENB, pins.IN3, pins.IN4, pins.RIGHT_ENCODER)
+		self.right_motor = SmartMotor(pins.ENB, pins.IN4, pins.IN3, pins.RIGHT_ENCODER) # flip direction by swapping IN pins
 
 	def setup(self):
-		# self.gyro.setup()
+		self.gyro.setup()
 		self.left_motor.setup()
 		self.right_motor.setup()
 
 	def periodic(self):
-		self.arcade_drive(1, 0)
-
-		# self.gyro.periodic()
+		self.gyro.periodic()
+		self.left_motor.periodic()
+		self.right_motor.periodic()
 	
 	def arcade_drive(self, speed, turn):
 		"""

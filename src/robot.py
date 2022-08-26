@@ -26,6 +26,9 @@ class Robot:
 		self.drivetrain.setup()
 	
 	def periodic(self):
+		self.drivetrain.arcade_drive(0.3, 0)
+		# print(self.drivetrain.gyro.get_heading())
+
 		self.drivetrain.periodic()
 
 	def stop(self):

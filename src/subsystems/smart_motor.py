@@ -32,6 +32,7 @@ class SmartMotor:
 		GPIO.add_event_detect(self.encoder_pin, GPIO.BOTH, callback=self.encoder_tick_callback)
 
 	def periodic(self):
+		# print(self, self.encoder_ticks)
 		pass
 
 	def set_output(self, velocity):
