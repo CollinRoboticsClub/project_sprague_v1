@@ -8,7 +8,7 @@ It is a Raspberry Pi based robot.
 
 ### Setup
 1. When using this on the Pi, make sure to clone the latest version of the code from the repo.
-2. Activate the venv by running `source venv/bin/activate` in the project directory.
+2. Activate the venv by running `source venv/Scripts/activate` in the project directory.
 3. 
 
 
