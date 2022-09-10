@@ -1,4 +1,4 @@
-import ischedule, signal
+import ischedule, signal, time
 
 import RPi.GPIO as GPIO
 
@@ -9,6 +9,7 @@ from constants import schedule_consts
 class Robot:
 	def __init__(self):
 		self.drivetrain = Drivetrain()
+		self.start_time = 0
 
 	def run(self):
 		self.setup()
@@ -24,10 +25,23 @@ class Robot:
 
 	def setup(self):
 		self.drivetrain.setup()
+		self.start_time = time.time()
 	
 	def periodic(self):
-		self.drivetrain.arcade_drive(0.3, 0)
-		# print(self.drivetrain.gyro.get_heading())
+		elapsed_time = time.time() - self.start_time
+		if elapsed_time < 2:
+			self.drivetrain.arcade_drive(0.5, 0)
+		elif elapsed_time < 4:
+			#Turn right
+			self.drivetrain.arcade_drive(0, 0.5)
+		elif elapsed_time < 6:
+			self.drivetrain.arcade_drive(0.5, 0)
+		elif elapsed_time < 8:
+			#Turn left
+			self.drivetrain.arcade_drive(0, -0.5)
+		else:
+			# reset the timer to repeat the sequence
+			self.start_time = time.time()
 
 		self.drivetrain.periodic()
 
