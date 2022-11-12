@@ -11,7 +11,7 @@ class Robot:
 		self.drivetrain = Drivetrain()
 		self.start_time = 0
 
-	def run(self): #this is a comment
+	def run(self):
 		self.setup()
 
 		signal.signal(signal.SIGINT, self.stop)
